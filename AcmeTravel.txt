@@ -1,0 +1,534 @@
+--Participant Set
+
+--Add participant terms here:
+
+Term: participant
+
+Term: customer
+
+Term: AT
+
+Term: airline
+
+Term: accommodation
+
+Term: hotel
+
+Term: apartment
+
+Term: tour agency
+
+Term: transport
+
+Term: bus
+
+Term: train
+
+--Event Set
+
+--Add event terms here:
+
+Term: event
+
+Term: reservation request
+
+Term: airline reservation
+
+Term: accommodation reservation
+
+Term: hotel reservation
+
+Term: apartment reservation
+
+Term: tour reservation
+
+Term: tour reservation response
+
+Term: airline reservation response
+
+Term: accommodation reservation response
+
+Term: successful airline reservation
+
+Term: unsuccessful airline reservation
+
+Term: successful accommodation reservation
+
+Term: unsuccessful accommodation reservation
+
+Term: successful tour reservation
+
+Term: unsuccessful tour reservation
+
+Term: notification
+
+Term: transport reservation
+
+Term: transport reservation response
+
+Term: bus reservation
+
+Term: train reservation
+
+Term: successful transport reservation
+
+Term: unsuccessful transport reservation
+
+--Constraint
+
+--Add your static constraints terms here:
+
+Term: name
+
+Term: date
+
+Term: start date
+
+Term: end date
+
+Term: outbound date
+
+Term: inbound date
+
+Term: destination
+
+Term: checkin date
+
+Term: checkout date
+
+Term: departure date
+
+Term: arrival date
+
+Term: tour date
+
+--Time
+
+Term: t
+
+---------------------------------------------------------------------
+
+--Fact Types
+
+--Add your participant fact types here:
+
+Fact Type: participant includes customer
+Fact Type: customer sends reservation request at t1
+Fact Type: customer receives notification at t2
+Fact Type: customer has name
+
+
+
+Fact Type: participant includes AT
+Fact Type: AT requests for airline reservation at t1
+Fact Type: AT requests for accommodation reservation at t1
+Fact Type: AT requests for tour reservation at t1
+Fact Type: AT requests for transport reservation at t1
+Fact Type: AT sends notification at t2
+Fact Type: AT receives reservation request at t2
+Fact Type: AT receives airline reservation response at t2
+Fact Type: AT receives accommodation reservation response at t2
+Fact Type: AT receives tour reservation response at t2
+Fact Type: AT receives transport reservation response at t2
+
+Fact Type: participant includes accommodation
+Fact Type: accommodation receives accommodation reservation at t2
+Fact Type: accommodation sends accommodation reservation response at t1
+Fact Type: accommodation includes hotel
+Fact Type: accommodation includes apartment
+
+Fact Type: participant includes airline
+Fact Type: airline receives airline reservation at t2
+Fact Type: airline sends airline reservation response at t1
+
+Fact Type: participant includes tour agency
+Fact Type: tour agency receives tour reservation at t2
+Fact Type: tour agency sends tour reservation response at t1
+
+
+Fact Type: participant includes transport
+Fact Type: transport receives transport reservation at t2
+Fact Type: transport sends transport reservation response at t1
+Fact Type: transport includes bus
+Fact Type: transport includes train
+
+--Fact Types
+
+--Add your event fact types here:
+
+
+Fact Type: event includes reservation request
+Fact Type: reservation request has start date
+Fact Type: reservation request has end date
+Fact Type: reservation request has destination
+
+--initialisation
+
+Fact Type: reservation request is initial event
+
+Fact Type: event includes airline reservation
+Fact Type: airline reservation has outbound date
+Fact Type: airline reservation has inbound date
+
+Fact Type: event includes accommodation reservation
+Fact Type: accommodation reservation has checkin date
+Fact Type: accommodation reservation has checkout date
+Fact Type: accommodation reservation includes hotel reservation
+Fact Type: accommodation reservation includes apartment reservation
+
+
+Fact Type: event includes transport reservation
+Fact Type: transport reservation has departure date
+Fact Type: transport reservation has arrival date
+
+--Type of accommodation reservation
+
+Fact Type: transport reservation includes bus reservation
+
+Fact Type: transport reservation includes train reservation
+
+
+Fact Type: event includes tour reservation
+
+--static constraints
+
+Fact Type: tour reservation has tour date
+
+
+Fact Type: event includes airline reservation response
+
+--Type of airline reservation response
+
+Fact Type: airline reservation response includes successful airline reservation
+
+Fact Type: airline reservation response includes unsuccessful airline reservation
+
+Fact Type: event includes accommodation reservation response
+
+--Type of airline reservation response
+
+Fact Type: accommodation reservation response includes successful accommodation reservation
+
+Fact Type: accommodation reservation response includes unsuccessful accommodation reservation
+
+
+Fact Type: event includes tour reservation response
+
+--Type of airline reservation response
+
+Fact Type: tour reservation response includes successful tour reservation
+
+Fact Type: tour reservation response includes unsuccessful tour reservation
+
+
+Fact Type: event includes transport reservation response
+
+--Type of airline reservation response
+
+Fact Type: transport reservation response includes successful transport reservation
+
+Fact Type: transport reservation response includes unsuccessful transport reservation
+
+
+Fact Type: event includes notification
+
+-----------------------------------------------------------------------------
+
+--Add your ordering of time associates with same event here:
+
+Fact Type: reservation request at t1 immediately precedes reservation request at t2
+
+Fact Type: airline reservation at t1 immediately precedes airline reservation at t2
+
+Fact Type: accommodation reservation at t1 immediately precedes accommodation reservation at t2
+
+Fact Type: tour reservation at t1 immediately precedes tour reservation at t2
+
+Fact Type: transport reservation at t1 immediately precedes transport reservation at t2
+
+Fact Type: accommodation reservation response at t1 immediately precedes accommodation reservation response at t2
+
+Fact Type: airline reservation response at t1 immediately precedes airline reservation response at t2
+
+Fact Type: tour reservation response at t1 immediately precedes tour reservation response at t2
+
+Fact Type: transport reservation response at t1 immediately precedes transport reservation response at t2
+
+Fact Type: notification at t1 immediately precedes notification at t2
+
+-----------------------------------------------------------------------------
+
+--Add your ordering of events fact types here:
+
+Fact Type: reservation request immediately precedes airline reservation
+
+Fact Type: reservation request immediately precedes accommodation reservation
+
+Fact Type: reservation request immediately precedes tour reservation
+
+Fact Type: reservation request immediately precedes transport reservation
+
+Fact Type: accommodation reservation immediately precedes accommodation reservation response
+
+Fact Type: airline reservation immediately precedes airline reservation response
+
+Fact Type: tour reservation immediately precedes tour reservation response
+
+Fact Type: transport reservation immediately precedes transport reservation response
+
+Fact Type: airline reservation response immediately precedes notification
+
+Fact Type: accommodation reservation response immediately precedes notification
+
+Fact Type: tour reservation response immediately precedes notification
+
+Fact Type: transport reservation response immediately precedes notification
+
+------------------------------------------------------------------------------------------------------
+
+--Add your static constraints fact types here (if required):
+
+--a set of date:
+
+Fact Type: start date is in date
+
+Fact Type: end date is in date
+
+Fact Type: checkin date is in date
+
+Fact Type: checkout date is in date
+
+Fact Type: outbound date is in date
+
+Fact Type: inbound date is in date
+
+Fact Type: departure date is in date
+
+Fact Type: arrival date is in date
+
+Fact Type: tour date is in date
+
+--initialisation for date
+
+Fact Type: start date is initial date
+
+Fact Type: end date is final date
+
+--Date constraints:
+
+Fact Type: start date of reservation request equals checkin date of accommodation reservation
+
+Fact Type: end date of reservation request equals checkout date of accommodation reservation
+
+Fact Type: start date of reservation request equals outbound date of airline reservation
+
+Fact Type: end date of reservation request equals inbound date of airline reservation
+
+Fact Type: tour date of tour reservation is between start date of reservation request
+
+Fact Type: tour date of tour reservation is between end date of reservation request
+
+Fact Type: departure date of transport reservation is between start date of reservation request
+
+Fact Type: arrival date of transport reservation is between end date of reservation request
+
+Fact Type: start date of reservation request equals end date of reservation request
+
+Fact Type: checkin date of accommodation reservation equals checkout date of accommodation reservation
+
+Fact Type: outbound date of airline reservation equals inbound date of airline reservation
+
+Fact Type: departure date of transport reservation begins before arrival date of transport reservation
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+--Add you rule here:
+
+--Rule 1
+
+Rule: It is obligatory that the customer sends exactly one reservation request at exactly one t1
+
+--Rule 2
+
+Rule: It is obligatory that the AT receives exactly one reservation request at exactly one t2
+
+--Rule 3
+
+Rule: It is obligatory that exactly one reservation request immediately precedes exactly one airline reservation or exactly one accommodation reservation or exactly one tour reservation or exactly one transport reservation
+
+--Rule 4
+
+Rule: It is obligatory that the AT requests for exactly one airline reservation or exactly one accommodation reservation or exactly one tour reservation or exactly one transport reservation, at exactly one t1
+
+--Rule 5
+
+Rule: It is obligatory that the airline receives exactly one airline reservation at exactly one t2
+
+--Rule 6
+
+Rule: It is obligatory that exactly one accommodation that includes the hotel receives exactly one accommodation reservation that includes exactly one hotel reservation at exactly one t2
+
+--Rule 7
+
+Rule: It is obligatory that exactly one accommodation that includes the apartment receives exactly one accommodation reservation that includes exactly one apartment reservation at exactly one t2
+
+--Rule 8
+
+Rule: It is obligatory that the tour agency receives exactly one tour reservation at exactly one t2
+
+--Rule 9
+
+Rule: It is obligatory that exactly one transport that includes the bus receives exactly one transport reservation that includes exactly one bus reservation at exactly one t2
+
+--Rule 10
+
+Rule: It is obligatory that exactly one transport that includes the train receives exactly one transport reservation that includes exactly one train reservation at exactly one t2
+
+--Rule 11
+
+Rule: It is obligatory that exactly one airline reservation immediately precedes exactly one airline reservation response that includes exactly one successful airline reservation or exactly one unsuccessful airline reservation but not both
+
+--Rule 12
+
+Rule: It is obligatory that exactly one accommodation reservation that includes exactly one hotel reservation or exactly one apartment reservation but not both immediately precedes exactly one accommodation reservation response that includes exactly one successful accommodation reservation or exactly one unsuccessful accommodation reservation but not both
+
+--Rule 13
+
+Rule: It is obligatory that exactly one tour reservation immediately precedes exactly one tour reservation response that includes exactly one successful tour reservation or exactly one unsuccessful tour reservation but not both
+
+--Rule 14
+
+Rule: It is obligatory that exactly one transport reservation that includes exactly one bus reservation or exactly one train reservation but not both immediately precedes exactly one transport reservation response that includes exactly one successful transport reservation or exactly one unsuccessful transport reservation but not both
+
+--Rule 15
+
+Rule: It is obligatory that the airline sends exactly one airline reservation response that includes exactly one successful airline reservation or exactly one unsuccessful airline reservation but not both, at exactly one t1
+
+--Rule 16
+
+Rule: It is obligatory that exactly one accommodation that includes exactly one hotel or exactly one apartment but not both sends exactly one accommodation reservation response that includes exactly one successful accommodation reservation or exactly one unsuccessful accommodation reservation but not both, at exactly one t1
+
+--Rule 17
+
+Rule: It is obligatory that the tour agency sends exactly one tour reservation response that includes exactly one successful tour reservation or exactly one unsuccessful tour reservation but not both, at exactly one t1
+
+--Rule 18
+
+Rule: It is obligatory that exactly one transport that includes exactly one bus or exactly one train but not both sends exactly one transport reservation response that includes exactly one successful transport reservation or exactly one unsuccessful transport reservation but not both, at exactly one t1
+
+--Rule 19
+
+Rule: It is obligatory that the AT receives exactly one airline reservation response that includes exactly one successful airline reservation or exactly one unsuccessful airline reservation but not both, at exactly one t2
+
+--Rule 20
+
+Rule: It is obligatory that the AT receives exactly one accommodation reservation response that includes exactly one successful accommodation reservation or exactly one unsuccessful accommodation reservation but not both, at exactly one t2
+
+--Rule 21
+
+Rule: It is obligatory that the AT receives exactly one tour reservation response that includes exactly one successful tour reservation or exactly one unsuccessful tour reservation but not both, at exactly one t2
+
+--Rule 22
+
+Rule: It is obligatory that the AT receives exactly one transport reservation response that includes exactly one successful transport reservation or exactly one unsuccessful transport reservation but not both, at exactly one t2
+
+--Rule 23
+
+Rule: It is obligatory that exactly one accommodation reservation response that includes exactly one successful accommodation reservation or exactly one unsuccessful accommodation reservation but not both immediately precedes exactly one notification
+
+--Rule 24
+
+Rule: It is obligatory that exactly one airline reservation response that includes exactly one successful airline reservation or exactly one unsuccessful airline reservation but not both immediately precedes exactly one notification
+
+--Rule 25
+
+Rule: It is obligatory that exactly one tour reservation response that includes exactly one successful tour reservation or exactly one unsuccessful tour reservation but not both immediately precedes exactly one notification
+
+--Rule 26
+
+Rule: It is obligatory that exactly one transport reservation response that includes exactly one successful transport reservation or exactly one unsuccessful transport reservation but not both immediately precedes exactly one notification
+
+--Rule 27
+
+Rule: It is obligatory that the AT sends exactly one notification at exactly one t1
+
+--Rule 28
+
+Rule: It is obligatory that the customer receives exactly one notification at exactly one t2
+
+--Rule 29
+
+Rule: It is obligatory that exactly one reservation request at exactly one t1 immediately precedes exactly one reservation request at exactly one t2
+
+--Rule 30
+
+Rule: It is obligatory that exactly one airline reservation at exactly one t1 immediately precedes exactly one airline reservation at exactly one t2
+
+--Rule 31
+
+Rule: It is obligatory that exactly one accommodation reservation at exactly one t1 immediately precedes exactly one accommodation reservation at exactly one t2
+
+--Rule 32
+
+Rule: It is obligatory that exactly one tour reservation at exactly one t1 immediately precedes exactly one tour reservation at exactly one t2
+
+--Rule 33
+
+Rule: It is obligatory that exactly one transport reservation at exactly one t1 immediately precedes exactly one transport reservation at exactly one t2
+
+--Rule 34
+
+Rule: It is obligatory that exactly one accommodation reservation response at exactly one t1 immediately precedes exactly one accommodation reservation response at exactly one t2
+
+--Rule 35
+
+Rule: It is obligatory that exactly one airline reservation response at exactly one t1 immediately precedes exactly one airline reservation response at exactly one t2
+
+--Rule 36
+
+Rule: It is obligatory that exactly one tour reservation response at exactly one t1 immediately precedes exactly one tour reservation response at exactly one t2
+
+--Rule 37
+
+Rule: It is obligatory that exactly one transport reservation response at exactly one t1 immediately precedes exactly one transport reservation response at exactly one t2
+
+--Rule 38
+
+Rule: It is obligatory that exactly one notification at exactly one t1 immediately precedes exactly one notification at exactly one t2
+
+--static constraints rules
+
+Rule: It is obligatory that exactly one start date of exactly one reservation request equals exactly one checkin date of exactly one accommodation reservation
+
+Rule: It is obligatory that exactly one end date of exactly one reservation request equals exactly one checkout date of exactly one accommodation reservation
+
+Rule: It is obligatory that exactly one start date of exactly one reservation request equals exactly one outbound date of exactly one airline reservation
+
+Rule: It is obligatory that exactly one end date of exactly one reservation request equals exactly one inbound date of exactly one airline reservation
+
+Rule: It is prohibited that exactly one start date of exactly one reservation request equals exactly one end date of exactly one reservation request
+
+Rule: It is prohibited that exactly one checkin date of exactly one accommodation reservation equals exactly one checkout date of exactly one accommodation reservation
+
+Rule: It is prohibited that exactly one outbound date of exactly one airline reservation equals exactly one inbound date of exactly one airline reservation
+
+Rule: It is obligatory that exactly one tour date of exactly one tour reservation is between exactly one start date of exactly one reservation request and exactly one end date of exactly one reservation request
+
+Rule: It is obligatory that exactly one departure date of exactly one transport reservation is between exactly one start date of exactly one reservation request and exactly one end date of exactly one reservation request
+
+Rule: It is obligatory that exactly one arrival date of exactly one transport reservation is between exactly one start date of exactly one reservation request and exactly one end date of exactly one reservation request
+
+Rule: It is obligatory that exactly one departure date of exactly one transport reservation begins before exactly one arrival date of exactly one transport reservation
+
+
+--Concrete request:
+
+Fact Type: AT requests for airline reservation at t1
+
+Fact Type: AT requests for tour reservation at t1
+
+Fact Type: AT requests for accommodation reservation at t1
+
+Fact Type: accommodation reservation includes hotel reservation
+
+Rule: It is obligatory that the AT requests for exactly one accommodation reservation that includes exactly one hotel reservation and exactly one tour reservation or exactly one airline reservation but not both, at exactly one t1
